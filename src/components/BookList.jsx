@@ -12,6 +12,10 @@ const BookList = ({ books }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
 
+  let changeSelectedBook = (newValue) => {
+    setSelectedBook(newValue)
+  }
+
   return (
     <Container>
       <Row>
@@ -41,16 +45,15 @@ const BookList = ({ books }) => {
                   <SingleBook
                     book={b}
                     selectedBook={selectedBook}
-                    changeSelectedBook={(selectedBook) =>
-                      setSelectedBook(selectedBook)
-                    }
+                    changeSelectedBook={changeSelectedBook}
                   />
                 </Col>
               ))}
+              console.log(selectedBook)
           </Row>
         </Col>
         <Col md={4}>
-          <CommentArea asin={selectedBook} />
+          <CommentArea asin={[selectedBook]} />
         </Col>
       </Row>
     </Container>

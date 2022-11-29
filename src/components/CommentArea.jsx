@@ -23,7 +23,7 @@ const CommentArea = ({ asin }) => {
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZjZjQyMmQ0YmUzZDAwMTU4NDVmZWYiLCJpYXQiOjE2Njk3MzA2NDAsImV4cCI6MTY3MDk0MDI0MH0.7jjvxG0xoMiQ9FpIPJTKx98IId3SxB3ZxDy28QcdhGc",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZjZjQyMmQ0YmUzZDAwMTU4NDVmZWYiLCJpYXQiOjE2Njk3MzQ2MjQsImV4cCI6MTY3MDk0NDIyNH0.lVJmm2bCnMf1I-EC7ibl6HsBweJWdxPVeY4b8n_iaUc",
           },
         }
       );
@@ -54,16 +54,21 @@ const CommentArea = ({ asin }) => {
 
 
   useEffect(() => {
-    fetchComments()
+    fetchComments(asin)
   }, [])
+
+  useEffect(() => {
+    fetchComments(asin)
+  }, [asin])
 
 
   return (
     <div>
       {isLoading && <Loading />}
       {isError && <Error />}
-      <AddComment asin={asin} />
-      <CommentList commentsToShow={comments} />
+      <AddComment asin = {[comments.asin]}/>
+      {comments && <CommentList commentsToShow={comments} />}
+      
     </div>
   );
 };
